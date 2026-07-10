@@ -1,22 +1,25 @@
 pipeline {
-  agent {
-    docker { image 'node:22-alpine'}
-  }
-  stages {
-    stage('Install') {
-      steps{
-        sh 'npm install'
-      }
-      stage('Test'){
-        steps{
-          sh 'npm test'
-      }
-      stage('Run'){
-        steps{
-          sh 'npm start'
-      }
-      }
-      }
+    agent any
+
+    tools {
+        nodejs 'NodeJS-22'
     }
-  }
+
+    stages {
+        stage('Install') {
+            steps {
+                dir('hello_world-node') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Run') {
+            steps {
+                dir('hello_world-node') {
+                    sh 'npm start'
+                }
+            }
+        }
+    }
 }
