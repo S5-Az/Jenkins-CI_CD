@@ -11,6 +11,14 @@ pipeline {
             }
         }
 
+        stage('check Node.js version') {
+            steps {
+                dir('hello_world-node') {
+                    sh 'node -v'
+                }
+            }
+        }
+
         stage('Run') {
             steps {
                 dir('hello_world-node') {
