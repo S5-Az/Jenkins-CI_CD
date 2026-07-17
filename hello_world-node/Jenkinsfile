@@ -33,13 +33,14 @@ pipeline {
                     sh 'docker -v'
                 }
             }
+        }
 
         stage('Run') {
             steps {
                 dir('hello_world-node') {
                     sh 'npm start'
                 }
-            }
+             }
         }
     }
 }
