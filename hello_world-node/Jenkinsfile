@@ -20,7 +20,8 @@ pipeline {
                 docker {image 'docker:dind'}
             }
             steps {
-                sh 'docker version'
+                sh 'docker run --privileged -d --name my-dind docker:dind'
+                sh 'docker exec -it my-dind docker ps'
             }
 
         }
