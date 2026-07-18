@@ -11,26 +11,18 @@ pipeline {
             }
         }
 
-        stage('check Node.js version') {
-            steps {
-                dir('hello_world-node') {
-                    sh 'node -v'
-                }
-            }
-        }
-
-        stage('check npm version') {
-            steps {
-                dir('hello_world-node') {
-                    sh 'npm -v'
-                }
-            }
-        }
-
-        stage('Run') {
+        stage('test') {
             steps {
                 dir('hello_world-node') {
                     sh 'npm start'
+                }
+            }
+        }
+
+        stage('Buid') {
+            steps {
+                dir('hello_world-node') {
+                    sh ' docker build -t myapp:1.0 .'
                 }
             }
         }
